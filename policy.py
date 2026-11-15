@@ -11,6 +11,7 @@ class ActionValuePolicy:
         payload = json.loads(Path(path).read_text(encoding="utf-8"))
         self.weights = payload["weights"]
         self.feature_count = payload["feature_count"]
+        self.metadata = payload.get("metadata", {})
 
     def scores(self, req, hole, opponent, equity):
         values = state_features(req, hole, opponent, equity)
